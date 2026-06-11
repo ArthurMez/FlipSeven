@@ -1,0 +1,78 @@
+@startuml
+abstract class Carte{}
+
+class CarteNuméro{
+numéro
+getNuméro()
+}
+
+class CarteBonus{
+valeur
+multiplication
+getValeur()
+estMultiplicateur()
+}
+
+abstract class CarteSpéciale {
+appliquerEffet()
+}
+
+class CarteVie {
+appliquerEffet()
+}
+
+class CarteStop {
+appliquerEffet()
+}
+
+class CartePioche3 {
+appliquerEffet()
+}
+
+CarteSpéciale <|-down- CarteVie
+CarteSpéciale <|-down- CarteStop
+CarteSpéciale <|-down- CartePioche3
+Carte <|--CarteNuméro
+Carte <|-- CarteBonus
+Carte <|-- CarteSpéciale
+
+class Joueur {
+nom
+score
+estActif
+estEliminé
+Piocher()
+arreter()
+compterScore()
+}
+
+class Jeu{
+initialiser()
+jouerManche()
+determinerGagnant()
+}
+
+class Manche{
+jouerManche()
+choixAction()
+calculPoint()
+défausserCartes()
+}
+
+class Pioche{
+pioche
+défausse
+donnerCarte()
+remplirPioche()
+mélangerPioche()
+}
+
+Jeu "1" --> "1..*" Manche :est composé de
+Jeu "1" --> "3..18" Joueur :est joué par
+Jeu "1" --> "1" Pioche :gère
+Joueur "1" --> "0..94" Carte :possède
+Joueur "3..18" <-- "0..*" Manche :est joué par
+Manche "1" --> "0..*" Pioche :utilise
+Pioche "1" --> "94" Carte :est composé de
+
+@enduml

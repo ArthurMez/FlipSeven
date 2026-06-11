@@ -1,0 +1,79 @@
+@startuml
+abstract class Carte{}
+
+class CarteNuméro{
+-numéro:Int
++getNuméro():Int
+}
+
+class CarteBonus{
+-valeur:Int
+-multiplication:Boolean
++getValeur():Int
++estMultiplicateur():Boolean
+}
+
+abstract class CarteSpéciale {
+  + appliquerEffet(joueurCible: Joueur, mancheActuelle: Manche)
+}
+
+class CarteVie {
+  + appliquerEffet(joueurCible: Joueur, mancheActuelle: Manche)
+}
+
+class CarteStop {
+  + appliquerEffet(joueurCible: Joueur, mancheActuelle: Manche)
+}
+
+class CartePioche3 {
+  + appliquerEffet(joueurCible: Joueur, mancheActuelle: Manche)
+}
+
+CarteSpéciale <|-down- CarteVie
+CarteSpéciale <|-down- CarteStop
+CarteSpéciale <|-down- CartePioche3
+Carte <|--CarteNuméro 
+Carte <|-- CarteBonus
+Carte <|-- CarteSpéciale
+
+class Joueur {
+#nom:String
++score:Int
++estActif:Boolean
++estEliminé:Boolean
++piocher(carte:Carte)
++arreter()
++compterScore()
+}
+
+class Jeu{
++initialiser()
+jouerManche()
++determinerGagnant():Joueur
+}
+
+class Manche{
++jouerManche()
++choixAction()
++calculPoint()
++défausserCartes(cartes:list<Carte>)
+}
+
+class Pioche{
++pioche:List<Carte>
++défausse:List<Carte>
++donnerCarte():Carte
++remplirPioche()
++mélangerPioche()
+
+}
+
+Jeu "1" --> "1..*\n-manches" Manche :est composé de
+Jeu "1" --> "3..18\n-participant" Joueur :est joué par
+Jeu "1" --> "1\n-pioche" Pioche :gère
+Joueur "1" --> "0..94\n+carteEnMain" Carte :possède
+Joueur "3..18\n-joueurs" <--- "0..*" Manche :est joué par
+Manche "1" --> "0..*\n-pioche" Pioche :utilise
+Pioche "1" --> "94\n-assembleCartes" Carte :est composé de
+
+@enduml
