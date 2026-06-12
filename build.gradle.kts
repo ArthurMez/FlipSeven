@@ -17,6 +17,7 @@ repositories {
 dependencies {
     // Bibliothèque Flip7 fournie sous forme de .jar (cf. libs/iut.info1.flip7-<version>.jar).
     //implementation(fileTree("libs") { include("iut.info1.flip7-*.jar") })
+    implementation(fileTree("libs") { include("iut.info1.flip7-*.jar") })
     testImplementation("org.junit.jupiter:junit-jupiter:5.11.4")
     testImplementation("org.junit.jupiter:junit-jupiter-params:5.11.4")
 }
