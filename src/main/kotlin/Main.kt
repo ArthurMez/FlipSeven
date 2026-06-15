@@ -27,7 +27,7 @@ fun main(args: Array<String>) {
         Carte3aLaSuite(), Carte3aLaSuite(), Carte3aLaSuite(),
         CarteStop(), CarteStop(), CarteStop()
     )
-    val jeu = Flip7(nbJoueurs, listOf(JoueurTest("Bob"),JoueurTest("Boob"),JoueurTest("Booob") ), pioche)
+    val jeu = Flip7(nbJoueurs, listOf(Joueur("Bob"),Joueur("Boby"),Joueur("Bobo") ), pioche)
 }
 
 
