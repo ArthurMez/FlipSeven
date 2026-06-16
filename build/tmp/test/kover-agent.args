@@ -1,4 +1,4 @@
-report.file=/var/home/E25A074G/equipe-22/build/kover/bin-reports/test.ic
+report.file=/var/home/E254115M/reseau/Perso/Documents/Flip7/equipe-22/build/kover/bin-reports/test.ic
 exclude=android.*
 exclude=com.android.*
 exclude=jdk.internal.*
