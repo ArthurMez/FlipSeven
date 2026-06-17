@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="iut.info1.flip7.TestOutilsCarte" tests="13" skipped="0" failures="1" errors="0" timestamp="2026-06-16T10:06:44" hostname="u-inf-j-e114-20" time="0.265">
+<testsuite name="iut.info1.flip7.TestOutilsCarte" tests="44" skipped="0" failures="1" errors="0" timestamp="2026-06-17T10:16:16" hostname="u-inf-j-c001-19" time="0.334">
   <properties/>
-  <testcase name="verifieMainPossible4troisALaSuite()" classname="iut.info1.flip7.TestOutilsCarte" time="0.191"/>
-  <testcase name="verifieMainPossible2BonusEgaux()" classname="iut.info1.flip7.TestOutilsCarte" time="0.011"/>
-  <testcase name="verifieMainPossible5num2doublon()" classname="iut.info1.flip7.TestOutilsCarte" time="0.008"/>
-  <testcase name="verifieMainPossibleDoublonStop()" classname="iut.info1.flip7.TestOutilsCarte" time="0.014">
+  <testcase name="verifiePiocheInitialeValide()" classname="iut.info1.flip7.TestOutilsCarte" time="0.233"/>
+  <testcase name="verifieMainPossibleFlip7Stop()" classname="iut.info1.flip7.TestOutilsCarte" time="0.011">
     <failure message="org.opentest4j.AssertionFailedError: Expected iut.info1.flip7.exceptions.MainInvalideException to be thrown, but nothing was thrown." type="org.opentest4j.AssertionFailedError">org.opentest4j.AssertionFailedError: Expected iut.info1.flip7.exceptions.MainInvalideException to be thrown, but nothing was thrown.
 	at app//org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
 	at app//org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:73)
 	at app//org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
 	at app//org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3128)
-	at app//iut.info1.flip7.TestOutilsCarte.verifieMainPossibleDoublonStop(TestOutilsCarte.kt:189)
+	at app//iut.info1.flip7.TestOutilsCarte.verifieMainPossibleFlip7Stop(TestOutilsCarte.kt:373)
 	at java.base@11.0.30/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base@11.0.30/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base@11.0.30/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -97,15 +95,48 @@
 	at app//worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
 </failure>
   </testcase>
-  <testcase name="verifieMainPossible5Bonus()" classname="iut.info1.flip7.TestOutilsCarte" time="0.002"/>
-  <testcase name="verifieMainPossible7numOk()" classname="iut.info1.flip7.TestOutilsCarte" time="0.001"/>
-  <testcase name="verifieMainPossibleMaxCartes()" classname="iut.info1.flip7.TestOutilsCarte" time="0.0"/>
-  <testcase name="verifieMainPossible8numDoublon()" classname="iut.info1.flip7.TestOutilsCarte" time="0.003"/>
-  <testcase name="verifieMainPossible4vie()" classname="iut.info1.flip7.TestOutilsCarte" time="0.003"/>
-  <testcase name="verifieMainPossible8num()" classname="iut.info1.flip7.TestOutilsCarte" time="0.003"/>
-  <testcase name="verifieMainPossible5num1doublon()" classname="iut.info1.flip7.TestOutilsCarte" time="0.0"/>
-  <testcase name="verifieMainPossible2Mult()" classname="iut.info1.flip7.TestOutilsCarte" time="0.004"/>
-  <testcase name="verifieMainPossible2Stop()" classname="iut.info1.flip7.TestOutilsCarte" time="0.016"/>
+  <testcase name="verifiePiocheInitialeMauvaisNum()" classname="iut.info1.flip7.TestOutilsCarte" time="0.001"/>
+  <testcase name="verifieMainPossible4troisALaSuite()" classname="iut.info1.flip7.TestOutilsCarte" time="0.002"/>
+  <testcase name="verifiePiocheInitialeVide()" classname="iut.info1.flip7.TestOutilsCarte" time="0.003"/>
+  <testcase name="verifiePiocheInitialeDoublonBonus()" classname="iut.info1.flip7.TestOutilsCarte" time="0.001"/>
+  <testcase name="verifiePiocheInitiale93cartes()" classname="iut.info1.flip7.TestOutilsCarte" time="0.001"/>
+  <testcase name="calculScore5Num5Bonus()" classname="iut.info1.flip7.TestOutilsCarte" time="0.014"/>
+  <testcase name="calculScore5NumMultBonus()" classname="iut.info1.flip7.TestOutilsCarte" time="0.001"/>
+  <testcase name="estFlip7ok_autresCartes()" classname="iut.info1.flip7.TestOutilsCarte" time="0.006"/>
+  <testcase name="verifiePiocheInitiale2Stop4Vie()" classname="iut.info1.flip7.TestOutilsCarte" time="0.001"/>
+  <testcase name="verifiePiocheInitiale2Vie4troisAlaSuite()" classname="iut.info1.flip7.TestOutilsCarte" time="0.003"/>
+  <testcase name="verifieMainPossible2BonusEgaux()" classname="iut.info1.flip7.TestOutilsCarte" time="0.001"/>
+  <testcase name="estFlip7non6Num()" classname="iut.info1.flip7.TestOutilsCarte" time="0.003"/>
+  <testcase name="estFlip7non7Num()" classname="iut.info1.flip7.TestOutilsCarte" time="0.001"/>
+  <testcase name="verifieMainPossible5num2doublon()" classname="iut.info1.flip7.TestOutilsCarte" time="0.001"/>
+  <testcase name="verifieMainPossibleFlip7Doublon()" classname="iut.info1.flip7.TestOutilsCarte" time="0.001"/>
+  <testcase name="verifieMainPossibleDoublonStop()" classname="iut.info1.flip7.TestOutilsCarte" time="0.001"/>
+  <testcase name="verifieMainPossible5Bonus()" classname="iut.info1.flip7.TestOutilsCarte" time="0.001"/>
+  <testcase name="verifieMainPossibleDoublonVie()" classname="iut.info1.flip7.TestOutilsCarte" time="0.002"/>
+  <testcase name="calculScoreFlip7Mult()" classname="iut.info1.flip7.TestOutilsCarte" time="0.001"/>
+  <testcase name="verifieMainPossible7numOk()" classname="iut.info1.flip7.TestOutilsCarte" time="0.0"/>
+  <testcase name="calculScoreFlip7()" classname="iut.info1.flip7.TestOutilsCarte" time="0.0"/>
+  <testcase name="verifieMainPossibleMaxCartes()" classname="iut.info1.flip7.TestOutilsCarte" time="0.001"/>
+  <testcase name="calculScore5Num()" classname="iut.info1.flip7.TestOutilsCarte" time="0.001"/>
+  <testcase name="verifiePiocheInitiale95cartes()" classname="iut.info1.flip7.TestOutilsCarte" time="0.001"/>
+  <testcase name="calculScore5NumDoublon()" classname="iut.info1.flip7.TestOutilsCarte" time="0.0"/>
+  <testcase name="calculScoreMainValide()" classname="iut.info1.flip7.TestOutilsCarte" time="0.0"/>
+  <testcase name="verifieMainPossible8numDoublon()" classname="iut.info1.flip7.TestOutilsCarte" time="0.001"/>
+  <testcase name="verifiePiocheInitiale2troisAlaSuite4Stop()" classname="iut.info1.flip7.TestOutilsCarte" time="0.002"/>
+  <testcase name="calculScore5NumDoublonMult()" classname="iut.info1.flip7.TestOutilsCarte" time="0.001"/>
+  <testcase name="calculScore5NumMult()" classname="iut.info1.flip7.TestOutilsCarte" time="0.0"/>
+  <testcase name="verifieMainPossible4vie()" classname="iut.info1.flip7.TestOutilsCarte" time="0.001"/>
+  <testcase name="verifieMainPossible8num()" classname="iut.info1.flip7.TestOutilsCarte" time="0.001"/>
+  <testcase name="verifieMainPossibleVide()" classname="iut.info1.flip7.TestOutilsCarte" time="0.002"/>
+  <testcase name="estFlip7ok()" classname="iut.info1.flip7.TestOutilsCarte" time="0.0"/>
+  <testcase name="calculScoreMainInvalide()" classname="iut.info1.flip7.TestOutilsCarte" time="0.001"/>
+  <testcase name="calculScore5NumDoublonBonus()" classname="iut.info1.flip7.TestOutilsCarte" time="0.0"/>
+  <testcase name="calculScore5NumBonus()" classname="iut.info1.flip7.TestOutilsCarte" time="0.0"/>
+  <testcase name="verifieMainPossible5num1doublon()" classname="iut.info1.flip7.TestOutilsCarte" time="0.002"/>
+  <testcase name="calculScore5NumPlusCartesSpeciales()" classname="iut.info1.flip7.TestOutilsCarte" time="0.001"/>
+  <testcase name="verifieMainPossible2Mult()" classname="iut.info1.flip7.TestOutilsCarte" time="0.002"/>
+  <testcase name="verifieMainPossible2Stop()" classname="iut.info1.flip7.TestOutilsCarte" time="0.002"/>
+  <testcase name="verifiePiocheInitiale2mult_PasDe0()" classname="iut.info1.flip7.TestOutilsCarte" time="0.002"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

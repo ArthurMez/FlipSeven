@@ -23,7 +23,7 @@
 <tr>
 <td>
 <div class="infoBox" id="tests">
-<div class="counter">13</div>
+<div class="counter">44</div>
 <p>tests</p>
 </div>
 </td>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">0.256s</div>
+<div class="counter">0.310s</div>
 <p>duration</p>
 </div>
 </td>
@@ -51,7 +51,7 @@
 </td>
 <td>
 <div class="infoBox failures" id="successRate">
-<div class="percent">92%</div>
+<div class="percent">97%</div>
 <p>successful</p>
 </div>
 </td>
@@ -70,15 +70,15 @@
 <div id="tab0" class="tab">
 <h2>Failed tests</h2>
 <div class="test">
-<a name="verifieMainPossibleDoublonStop()"></a>
-<h3 class="failures">verifieMainPossibleDoublonStop()</h3>
+<a name="verifieMainPossibleFlip7Stop()"></a>
+<h3 class="failures">verifieMainPossibleFlip7Stop()</h3>
 <span class="code">
 <pre>org.opentest4j.AssertionFailedError: Expected iut.info1.flip7.exceptions.MainInvalideException to be thrown, but nothing was thrown.
 	at app//org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
 	at app//org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:73)
 	at app//org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
 	at app//org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3128)
-	at app//iut.info1.flip7.TestOutilsCarte.verifieMainPossibleDoublonStop(TestOutilsCarte.kt:189)
+	at app//iut.info1.flip7.TestOutilsCarte.verifieMainPossibleFlip7Stop(TestOutilsCarte.kt:373)
 	at java.base@11.0.30/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base@11.0.30/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base@11.0.30/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -178,68 +178,223 @@
 </tr>
 </thead>
 <tr>
-<td class="success">verifieMainPossible2BonusEgaux()</td>
-<td class="success">0.011s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">verifieMainPossible2Mult()</td>
-<td class="success">0.004s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">verifieMainPossible2Stop()</td>
-<td class="success">0.016s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">verifieMainPossible4troisALaSuite()</td>
-<td class="success">0.191s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">verifieMainPossible4vie()</td>
-<td class="success">0.003s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">verifieMainPossible5Bonus()</td>
-<td class="success">0.002s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">verifieMainPossible5num1doublon()</td>
-<td class="success">0s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">verifieMainPossible5num2doublon()</td>
-<td class="success">0.008s</td>
-<td class="success">passed</td>
-</tr>
-<tr>
-<td class="success">verifieMainPossible7numOk()</td>
+<td class="success">calculScore5Num()</td>
 <td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="success">verifieMainPossible8num()</td>
+<td class="success">calculScore5Num5Bonus()</td>
+<td class="success">0.014s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">calculScore5NumBonus()</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">calculScore5NumDoublon()</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">calculScore5NumDoublonBonus()</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">calculScore5NumDoublonMult()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">calculScore5NumMult()</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">calculScore5NumMultBonus()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">calculScore5NumPlusCartesSpeciales()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">calculScoreFlip7()</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">calculScoreFlip7Mult()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">calculScoreMainInvalide()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">calculScoreMainValide()</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">estFlip7non6Num()</td>
 <td class="success">0.003s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">estFlip7non7Num()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">estFlip7ok()</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">estFlip7ok_autresCartes()</td>
+<td class="success">0.006s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">verifieMainPossible2BonusEgaux()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">verifieMainPossible2Mult()</td>
+<td class="success">0.002s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">verifieMainPossible2Stop()</td>
+<td class="success">0.002s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">verifieMainPossible4troisALaSuite()</td>
+<td class="success">0.002s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">verifieMainPossible4vie()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">verifieMainPossible5Bonus()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">verifieMainPossible5num1doublon()</td>
+<td class="success">0.002s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">verifieMainPossible5num2doublon()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">verifieMainPossible7numOk()</td>
+<td class="success">0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">verifieMainPossible8num()</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
 <td class="success">verifieMainPossible8numDoublon()</td>
-<td class="success">0.003s</td>
+<td class="success">0.001s</td>
 <td class="success">passed</td>
 </tr>
 <tr>
-<td class="failures">verifieMainPossibleDoublonStop()</td>
-<td class="failures">0.014s</td>
+<td class="success">verifieMainPossibleDoublonStop()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">verifieMainPossibleDoublonVie()</td>
+<td class="success">0.002s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">verifieMainPossibleFlip7Doublon()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="failures">verifieMainPossibleFlip7Stop()</td>
+<td class="failures">0.011s</td>
 <td class="failures">failed</td>
 </tr>
 <tr>
 <td class="success">verifieMainPossibleMaxCartes()</td>
-<td class="success">0s</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">verifieMainPossibleVide()</td>
+<td class="success">0.002s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">verifiePiocheInitiale2Stop4Vie()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">verifiePiocheInitiale2Vie4troisAlaSuite()</td>
+<td class="success">0.003s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">verifiePiocheInitiale2mult_PasDe0()</td>
+<td class="success">0.002s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">verifiePiocheInitiale2troisAlaSuite4Stop()</td>
+<td class="success">0.002s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">verifiePiocheInitiale93cartes()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">verifiePiocheInitiale95cartes()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">verifiePiocheInitialeDoublonBonus()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">verifiePiocheInitialeMauvaisNum()</td>
+<td class="success">0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">verifiePiocheInitialeValide()</td>
+<td class="success">0.233s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">verifiePiocheInitialeVide()</td>
+<td class="success">0.003s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -252,7 +407,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 8.10</a> at 16 juin 2026, 12:06:45</p>
+<a href="http://www.gradle.org">Gradle 8.10</a> at 17 juin 2026, 12:16:16</p>
 </div>
 </div>
 </body>
