@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="iut.info1.flip7.Test" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-06-15T07:43:10" hostname="u-inf-j-c002-15" time="0.034">
-  <properties/>
-  <testcase name="test()" classname="iut.info1.flip7.Test" time="0.034"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

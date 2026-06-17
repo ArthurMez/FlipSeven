@@ -1,4 +1,4 @@
-package iut.info1.flip7
+  package iut.info1.flip7
 
 import iut.info1.flip7.cartes.*
 
