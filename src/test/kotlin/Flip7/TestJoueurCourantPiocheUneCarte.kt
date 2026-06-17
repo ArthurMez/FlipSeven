@@ -1,4 +1,4 @@
-package Flip7
+package iut.info1.flip7
 
 import iut.info1.flip7.Flip7
 import iut.info1.flip7.Joueur
@@ -18,7 +18,7 @@ import org.junit.jupiter.api.assertThrows
 
 class TestJoueurCourantPiocheUneCarte {
     @Test
-    fun ct1JoueurCourantPiocheUneCarte() {
+    fun ct1JoueurCourantPiocheUneCarteCasNominal() {
         val carteAttendue = CarteNum(5)
         val pioche = listOf(carteAttendue, CarteNum(7), CarteNum(8))
         val jeu = Flip7(
@@ -41,7 +41,7 @@ class TestJoueurCourantPiocheUneCarte {
     }
 
     @Test
-    fun ct2JoueurCourantPiocheUneCarte() {
+    fun ct2JoueurCourantPiocheUneCarteEtatPartieInvalide() {
 
         val pioche = listOf(CarteStop(), CarteNum(5))
         val jeu = Flip7(
@@ -62,7 +62,7 @@ class TestJoueurCourantPiocheUneCarte {
     }
 
     @Test
-    fun ct3JoueurCourantPiocheUneCarte() {
+    fun ct3JoueurCourantPiocheUneCarteEtPerd() {
 
         val pioche = listOf(CarteNum(5), CarteNum(5), CarteNum(5))
         val jeu = Flip7(

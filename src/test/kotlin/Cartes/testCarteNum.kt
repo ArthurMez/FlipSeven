@@ -1,3 +1,5 @@
+package iut.info1.flip7.Cartes
+
 import iut.info1.flip7.cartes.CarteNum
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue

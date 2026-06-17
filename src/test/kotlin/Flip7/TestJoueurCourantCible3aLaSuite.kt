@@ -1,4 +1,4 @@
-package Flip7
+package iut.info1.flip7
 
 import iut.info1.flip7.Flip7
 import iut.info1.flip7.Joueur
@@ -9,13 +9,14 @@ import iut.info1.flip7.etats.EtatJoueur
 import iut.info1.flip7.exceptions.CarteInvalideException
 import iut.info1.flip7.exceptions.EtatPartieInvalideException
 import iut.info1.flip7.exceptions.JoueurNonActifException
+import iut.info1.flip7.exceptions.PiocheInvalideException
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
 class TestJoueurCourantCible3aLaSuite {
     @Test
-    fun ct1joueurCourantCible3aLaSuite() {
+    fun ct1joueurCourantCible3aLaSuiteCasNominal() {
         val pioche = listOf(Carte3aLaSuite(), CarteNum(5), CarteNum(4), CarteNum(3), CarteStop())
         val jeu = Flip7(
             nbJoueurs = 2,
@@ -32,7 +33,7 @@ class TestJoueurCourantCible3aLaSuite {
     }
 
     @Test
-    fun ct2joueurCourantCible3aLaSuite() {
+    fun ct2joueurCourantCible3aLaSuiteEtatPartieInvalide() {
         val pioche = listOf(CarteNum(5), CarteNum(5), CarteNum(4), CarteNum(3), CarteStop())
         val jeu = Flip7(
             nbJoueurs = 2,
@@ -46,7 +47,7 @@ class TestJoueurCourantCible3aLaSuite {
     }
 
     @Test
-    fun ct3joueurCourantCible3aLaSuite() {
+    fun ct3joueurCourantCible3aLaSuiteCarteInvalide() {
         val pioche = listOf(Carte3aLaSuite(), CarteNum(5), CarteNum(5), CarteNum(4), CarteNum(3), CarteStop())
         val jeu = Flip7(
             nbJoueurs = 2,
@@ -61,7 +62,7 @@ class TestJoueurCourantCible3aLaSuite {
     }
 
     @Test
-    fun ct4joueurCourantCible3aLaSuite() {
+    fun ct4joueurCourantCible3aLaSuiteJoueurCibleNonActif() {
         val pioche = listOf(CarteStop(), Carte3aLaSuite(), CarteNum(5), CarteNum(4), CarteNum(3), CarteStop())
         val jeu = Flip7(
             nbJoueurs = 2,
@@ -75,7 +76,7 @@ class TestJoueurCourantCible3aLaSuite {
         }
     }
     @Test
-    fun ct5joueurCourantCible3aLaSuite() {
+    fun ct5joueurCourantCible3aLaSuitePiocheVidé() {
         val pioche = listOf(CarteNum(5),CarteNum(4),CarteNum(3),CarteNum(5), Carte3aLaSuite(), CarteNum(1))
         val jeu = Flip7(
             nbJoueurs = 3,
@@ -95,7 +96,7 @@ class TestJoueurCourantCible3aLaSuite {
         assertEquals(4,jeu.main[2]?.size)
     }
     @Test
-    fun ct6joueurCourantCible3aLaSuite() {
+    fun ct6joueurCourantCible3aLaSuiteCibleEliminé() {
         val pioche = listOf(Carte3aLaSuite(), CarteNum(5), CarteNum(5), CarteNum(3))
         val jeu = Flip7(
             nbJoueurs = 2,
@@ -107,5 +108,18 @@ class TestJoueurCourantCible3aLaSuite {
         assertEquals(EtatJoueur.PERDU ,jeu.etatJoueur[1])
         //On vérifie que la dernière carte n'a pas été disstribué par le 3 à la suite
         assertEquals(1, jeu.taillePioche)
+    }
+    @Test
+    fun ct7joueurCourantCible3aLaSuitePiocheVide(){
+        val pioche = listOf(Carte3aLaSuite(), CarteNum(5))
+        val jeu = Flip7(
+            nbJoueurs = 2,
+            joueurs = listOf(Joueur("Isac"), Joueur("Roman")),
+            cartes = pioche,
+            debug = true
+        )
+        assertThrows<PiocheInvalideException> {
+            jeu.joueurCourantCible3aLaSuite(jeu.joueurCourantPiocheUneCarte(),1)
+        }
     }
 }
