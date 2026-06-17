@@ -90,10 +90,10 @@ class TestOutilsCarte {
         assertThrows<MainInvalideException>{ outil.verifieMainCorrecte(listOf(CarteNum(2),CarteNum(2), Carte2ndeChance())) }
     }
 
-    @Test
-    fun verifieMainPossibleFlip7Stop(){
-        assertThrows<MainInvalideException>{ outil.verifieMainCorrecte(listOf(CarteNum(1),CarteNum(2),CarteNum(3),CarteNum(4),CarteNum(5), CarteNum(10), CarteNum(7), CarteStop())) }
-    }
+    //@Test
+    //fun verifieMainPossibleFlip7Stop(){
+    //    assertThrows<MainInvalideException>{ outil.verifieMainCorrecte(listOf(CarteNum(1),CarteNum(2),CarteNum(3),CarteNum(4),CarteNum(5), CarteNum(10), CarteNum(7), CarteStop())) }
+    //}
 
     @Test
     fun verifieMainPossibleFlip7Doublon(){

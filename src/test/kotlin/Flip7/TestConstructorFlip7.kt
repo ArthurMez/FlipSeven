@@ -1,3 +1,5 @@
+package Flip7
+
 import iut.info1.flip7.Flip7
 import iut.info1.flip7.Joueur
 import iut.info1.flip7.cartes.Carte
