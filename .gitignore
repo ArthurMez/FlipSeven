@@ -1,0 +1,9 @@
+# Fichiers de compilation Gradle
+build/
+.gradle/
+
+# Fichiers de l'IDE (IntelliJ IDEA)
+.idea/
+*.iml
+*.iws
+*.ipr
