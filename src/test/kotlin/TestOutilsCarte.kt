@@ -31,6 +31,11 @@ class TestOutilsCarte {
     }
 
     @Test
+    fun verifieMainPossible6Bonus(){
+        assertThrows<MainInvalideException> { outil.verifieMainCorrecte(listOf(CarteBonusPlus(2), CarteBonusPlus(4), CarteBonusPlus(6), CarteBonusPlus(8), CarteBonusPlus(10), CarteBonusPlus(10))) }
+    }
+
+    @Test
     fun verifieMainPossible4vie(){
         assertThrows<MainInvalideException>{outil.verifieMainCorrecte(listOf(Carte2ndeChance(), Carte2ndeChance(),Carte2ndeChance(),Carte2ndeChance()))}
     }
@@ -215,6 +220,11 @@ class TestOutilsCarte {
     }
 
 
+
+    @Test
+    fun estFlip7Invalide(){
+        assertThrows<MainInvalideException>{outil.estFlip7(listOf(CarteNum(3),CarteNum(3),CarteNum(3),CarteNum(4),CarteNum(5), CarteNum(10), CarteNum(7))) }
+    }
 
     @Test
     fun estFlip7ok(){
