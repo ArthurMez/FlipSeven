@@ -6,7 +6,7 @@ On a choisi de représenter le jeu flip7 en utilisant 4 vues différentes : Une 
 ###### Image:
 ---
 
-//
+<img src=Images/MenuPrincipal.png>
 
 ---
 
@@ -18,7 +18,7 @@ Le label de titre, le bouton qui permet de passer dans l'interface de lancement 
 ###### Image:
 ---
 
-//
+<img src=Images/InitialisationPartie.png>
 
 ---
 
@@ -36,7 +36,7 @@ On change aussi la couleur des formes personnage pour montrer que le joueur est 
 ###### Image:
 ---
 
-//
+<img src=Images/RèglesDuJeu.png>
 
 ---
 
