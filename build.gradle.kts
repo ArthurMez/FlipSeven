@@ -2,6 +2,7 @@ plugins {
     kotlin("jvm") version "2.3.0"
     application
     id("org.jetbrains.kotlinx.kover") version "0.9.1"
+    id("org.openjfx.javafxplugin") version "0.1.0"
 }
 
 group = "iut.info1"
@@ -24,6 +25,11 @@ dependencies {
 
 kotlin {
     jvmToolchain(11)
+}
+
+javafx {
+    version = "17"
+    modules("javafx.controls", "javafx.fxml")
 }
 
 application {
