@@ -1,8 +1,35 @@
-  package iut.info1.flip7
+package iut.info1.flip7.flip7
 
+import iut.info1.flip7.Flip7
+import iut.info1.flip7.Joueur
 import iut.info1.flip7.cartes.*
+import iut.info1.flip7.flip7.controleur.ControleurAjouterJoueur
+import iut.info1.flip7.flip7.controleur.ControleurSupprimerJoueur
+import iut.info1.flip7.flip7.modele.ModeleInitialisation
+import iut.info1.flip7.flip7.vue.InitialisationVue
+import javafx.application.Application
+import javafx.scene.Scene
+import javafx.stage.Stage
 
 
+class Initialisation: Application(){
+
+    override fun start(primaryStage: Stage) {
+        val modele = ModeleInitialisation()
+        val vue = InitialisationVue()
+
+        val controleurAjouter = ControleurAjouterJoueur(modele, vue)
+        val controleurSupprimer = ControleurSupprimerJoueur(modele, vue)
+
+        vue.fixeControleurBoutonAjouter(controleurAjouter)
+        vue.fixeControleurBoutonSupprimer(controleurSupprimer)
+
+        val scene = Scene(vue, 600.0, 400.0)
+        primaryStage.title="Initialisation"
+        primaryStage.scene=scene
+        primaryStage.show()
+    }
+}
 
 fun main(args: Array<String>) {
     println("Hello")
@@ -27,7 +54,9 @@ fun main(args: Array<String>) {
         Carte3aLaSuite(), Carte3aLaSuite(), Carte3aLaSuite(),
         CarteStop(), CarteStop(), CarteStop()
     )
-    val jeu = Flip7(nbJoueurs, listOf(Joueur("Bob"),Joueur("Boby"),Joueur("Bobo") ), pioche)
+    val jeu = Flip7(nbJoueurs, listOf(Joueur("Bob"), Joueur("Boby"), Joueur("Bobo")), pioche)
+
+    Application.launch(Initialisation::class.java)
 }
 
 
