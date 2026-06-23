@@ -1,5 +1,7 @@
-  package iut.info1.flip7
+package iut.info1.flip7.flip7
 
+import iut.info1.flip7.Flip7
+import iut.info1.flip7.Joueur
 import iut.info1.flip7.cartes.*
 
 
@@ -27,7 +29,7 @@ fun main(args: Array<String>) {
         Carte3aLaSuite(), Carte3aLaSuite(), Carte3aLaSuite(),
         CarteStop(), CarteStop(), CarteStop()
     )
-    val jeu = Flip7(nbJoueurs, listOf(Joueur("Bob"),Joueur("Boby"),Joueur("Bobo") ), pioche)
+    val jeu = Flip7(nbJoueurs, listOf(Joueur("Bob"), Joueur("Boby"), Joueur("Bobo")), pioche)
 }
 
 
