@@ -20,7 +20,7 @@ class DeroulementPartieVue : BorderPane() {
     // Le contrôleur aura besoin d'accéder à ces boutons pour leur donner une action
     val btnTirer = Button("Tirer")
     val btnStop = Button("Stop")
-
+    private val conteneurCarteTiree = HBox()//Reservation de l'emplacement pour la carte tiré
     // Labels qui seront mis à jour par le contrôleur
     private val labelManche = Label("Manche : 1")
     private val labelScoreTotal = Label("Score total:")
@@ -62,8 +62,7 @@ class DeroulementPartieVue : BorderPane() {
         // Section Pioche / Carte tirée
         val zonePioche = HBox(10.0)
         val imagePioche = outilsCartes.getImageCarte(5, 2)
-        val imageCarteTiree = ImageView()
-        zonePioche.children.addAll(imagePioche, imageCarteTiree)
+        zonePioche.children.addAll(imagePioche, conteneurCarteTiree)
 
         // Section Scores
         val zoneScores = HBox(15.0)
@@ -112,24 +111,7 @@ class DeroulementPartieVue : BorderPane() {
 
         // cartes numéros possédées
         val zoneCartes = HBox(-15.0) // Marge négative pour superposer légèrement les cartes
-        // --- CODE DE TEST À AJOUTER ICI ---
-        // On va donner des cartes différentes selon le joueur pour bien vérifier
-        if (index == 0) {
-            // Joueur 1 : On teste la carte "0" (colonne 0, ligne 0) et "1" (colonne 1, ligne 0)
-            zoneCartes.children.add(outilsCartes.getImageCarte(0, 0))
-            zoneCartes.children.add(outilsCartes.getImageCarte(1, 0))
-            zoneCartes.children.add(outilsCartes.getImageCarte(1, 0))
-            zoneCartes.children.add(outilsCartes.getImageCarte(1, 0))
-            zoneCartes.children.add(outilsCartes.getImageCarte(1, 0))
-            zoneCartes.children.add(outilsCartes.getImageCarte(1, 0))
-            zoneCartes.children.add(outilsCartes.getImageCarte(1, 0))
-        } else if (index == 1) {
-            // Joueur 2 : On teste la carte "10" (colonne 2, ligne 1)
-            zoneCartes.children.add(outilsCartes.getImageCarte(2, 1))
-        } else {
-            // Les autres : On teste la carte "Flip7" (colonne 5, ligne 2)
-            zoneCartes.children.add(outilsCartes.getImageCarte(5, 2))
-        }
+
 
         boxJoueur.children.addAll(infoJoueur, zoneCartes)
         return boxJoueur
@@ -143,5 +125,9 @@ class DeroulementPartieVue : BorderPane() {
 
     fun mettreAJourManche(numeroManche: Int) {
         labelManche.text = "Manche : $numeroManche"
+    }
+    fun afficherCarteTiree(colonne: Int, ligne: Int) {
+        conteneurCarteTiree.children.clear() // On efface la carte du tour précédent
+        conteneurCarteTiree.children.add(outilsCartes.getImageCarte(colonne, ligne))
     }
 }

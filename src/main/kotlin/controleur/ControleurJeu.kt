@@ -9,11 +9,16 @@ class ControleurJeu(private val vue: DeroulementPartieVue, private val modele: F
         // C'est ici qu'on "branche" les actions sur les boutons de la vue
 
         vue.btnTirer.setOnAction {
-            // On demande au modèle d'agir sur la partie
-            modele.partieEnCours?.joueurCourantPiocheUneCarte()
-            println("Action : Tirer une carte")
+            val carteTiree = modele.partieEnCours?.joueurCourantPiocheUneCarte()
 
-            // Plus tard, on appellera une méthode ici pour mettre à jour la vue avec la nouvelle carte
+            if (carteTiree != null) {
+                val coordonnees = utilitaires.OutilsAffichageCartes().obtenirCoordonneesCarte(carteTiree)
+                vue.afficherCarteTiree(coordonnees.first, coordonnees.second)
+
+                println("Carte piochée : $carteTiree")
+
+                // 3. TODO : Mettre à jour le score du joueur à l'écran
+            }
         }
 
         vue.btnStop.setOnAction {

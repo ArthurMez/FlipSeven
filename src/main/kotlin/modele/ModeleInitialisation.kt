@@ -22,4 +22,8 @@ class ModeleInitialisation {
 
     fun estPlein(): Boolean = nomsJoueurs.all { it != null }
 
+    fun getJoueursValides(): List<String> {
+        return nomsJoueurs.filterNotNull()
+    }
+
 }

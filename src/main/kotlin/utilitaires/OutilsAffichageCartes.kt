@@ -1,5 +1,6 @@
 package utilitaires
 
+import iut.info1.flip7.cartes.*
 import javafx.geometry.Rectangle2D
 import javafx.scene.image.Image
 import javafx.scene.image.ImageView
@@ -43,5 +44,35 @@ class OutilsAffichageCartes {
         // imageView.isPreserveRatio = true
 
         return imageView
+    }
+
+    fun obtenirCoordonneesCarte(carte: Carte): Pair<Int, Int> {
+        return when (carte) {
+
+            is CarteNum -> {
+                if (carte.valeur <= 7) {
+                    Pair(carte.valeur, 0)
+                } else {
+                    Pair(carte.valeur - 8, 1)
+                }
+            }
+
+            is CarteBonusPlus -> {
+                when (carte.valeur) {
+                    2 -> Pair(5, 1)
+                    4 -> Pair(6, 1)
+                    6 -> Pair(7, 1)
+                    10 -> Pair(0, 2)
+                    else -> Pair(5, 2)
+                }
+            }
+
+            is CarteBonusMultiplie -> Pair(1, 2)
+            is CarteStop -> Pair(2, 2)
+            is Carte2ndeChance -> Pair(3, 2)
+            is Carte3aLaSuite -> Pair(4, 2)
+
+            else -> Pair(5, 2)
+        }
     }
 }
