@@ -1,4 +1,4 @@
-package iut.info1.flip7.flip7.vue
+package vue
 
 class InitialisationVue {
 }

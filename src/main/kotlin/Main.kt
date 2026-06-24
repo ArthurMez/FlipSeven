@@ -1,3 +1,6 @@
+import iut.info1.flip7.flip7.controleur.ControleurJeu
+import iut.info1.flip7.flip7.modele.Flip7Manager
+import iut.info1.flip7.flip7.vue.DeroulementPartieVue
 import iut.info1.flip7.flip7.vue.MenuPrincipalVue
 import javafx.application.Application
 import javafx.scene.Scene
@@ -11,10 +14,13 @@ class Flip7Main: Application() {
         //javafx.scene.text.Font.loadFont(javaClass.getResourceAsStream("/Polices/LeckerliOne-Regular.ttf"), 20.0)
         //javafx.scene.text.Font.loadFont(javaClass.getResourceAsStream("/Polices/Inter-VariableFont_slnt,wght.ttf"), 20.0)
 
+        val modele = Flip7Manager()
         primaryStage.title="Flip7"
-        val root = MenuPrincipalVue()
+        val vuePrincipale = DeroulementPartieVue()
 
-        val scene = Scene(root, 700.0, 500.0)
+        val controleur = ControleurJeu(vuePrincipale,modele)
+
+        val scene = Scene(vuePrincipale, 1280.0, 720.0)
         primaryStage.scene=scene
         primaryStage.show()
 
