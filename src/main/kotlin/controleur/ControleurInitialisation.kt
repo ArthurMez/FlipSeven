@@ -14,12 +14,18 @@ class ControleurAjouterJoueur(private val modele: ModeleInitialisation, private 
 
     override fun handle(event: ActionEvent) {
         val nom = vue.getNomSaisi()
-        if (nom != "" && !modele.estPlein()) {
-            val index = modele.ajouterJoueur(nom)
-            if (index >= 0) {
-                vue.mettreAJourAffichageJoueur(index, nom)
-                vue.clearInput()
-            }
+        if (nom == "") return
+
+        if (modele.estPlein()) {
+            vue.afficherErreur("Nombre maximum de joueurs atteint !")
+            return
+        }
+
+        val index = modele.ajouterJoueur(nom)
+        if (index >= 0) {
+            vue.masquerErreur()
+            vue.mettreAJourAffichageJoueur(index, nom)
+            vue.clearInput()
         }
     }
 }
@@ -79,8 +85,7 @@ class ControleurInitialisation(
                 application.changerVue(menuJeu)
 
             } else {
-                println("Il faut au moins 2 joueurs pour lancer la partie !")
-                // Bonus futur : Tu pourrais demander à la vue d'afficher un message d'erreur rouge ici
+                vue.afficherErreur("Il faut au moins 2 joueurs !")
             }
         }
     }

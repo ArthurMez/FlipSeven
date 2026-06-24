@@ -25,6 +25,7 @@ class InitialisationVue : BorderPane() {
 
 
     val boutonDemarrer = Button("Démarrer partie")
+    private val labelErreur = Label("")
 
     private val centre = HBox()
 
@@ -100,6 +101,9 @@ class InitialisationVue : BorderPane() {
         inputNom.prefWidth = 200.0
         inputNom.style = "-fx-font-family: 'Inter'; -fx-font-size: 14px;"
 
+        labelErreur.style = "-fx-font-family: 'Inter'; -fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #D32F2F;"
+        labelErreur.isVisible = false
+
         basAjouter.spacing = 8.0
         basAjouter.alignment = Pos.CENTER
         basAjouter.children.addAll(inputNom, boutonAjouter)
@@ -124,6 +128,16 @@ class InitialisationVue : BorderPane() {
 
     fun clearInput() {
         inputNom.clear()
+    }
+
+    fun afficherErreur(message: String) {
+        labelErreur.text = message
+        labelErreur.isVisible = true
+    }
+
+    fun masquerErreur() {
+        labelErreur.text = ""
+        labelErreur.isVisible = false
     }
 
     fun getIndexBouton(bouton: Button): Int {
