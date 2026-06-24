@@ -46,7 +46,7 @@ class OutilsAffichageCartes {
         return imageView
     }
 
-    fun obtenirCoordonneesCarte(carte: Carte): Pair<Int, Int> {
+fun obtenirCoordonneesCarte(carte: Carte): Pair<Int, Int> {
         return when (carte) {
 
             is CarteNum -> {

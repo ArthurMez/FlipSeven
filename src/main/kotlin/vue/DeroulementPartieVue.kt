@@ -26,6 +26,8 @@ class DeroulementPartieVue : BorderPane() {
     private val labelScoreTotal = Label("Score total:")
     // Tu peux stocker les labels de score des joueurs dans une liste pour y accéder facilement par index
     private val labelsScoresJoueurs = mutableListOf<Label>()
+    private val zonesCartesJoueurs = mutableListOf<HBox>()
+    private val casesJoueurs = mutableListOf<VBox>()
 
     init {
         // Grille des joueurs
@@ -111,9 +113,10 @@ class DeroulementPartieVue : BorderPane() {
 
         // cartes numéros possédées
         val zoneCartes = HBox(-15.0) // Marge négative pour superposer légèrement les cartes
-
+        zonesCartesJoueurs.add(zoneCartes)
 
         boxJoueur.children.addAll(infoJoueur, zoneCartes)
+        casesJoueurs.add(boxJoueur)
         return boxJoueur
     }
 
@@ -130,4 +133,38 @@ class DeroulementPartieVue : BorderPane() {
         conteneurCarteTiree.children.clear() // On efface la carte du tour précédent
         conteneurCarteTiree.children.add(outilsCartes.getImageCarte(colonne, ligne))
     }
+    fun ajouterCarteAuJoueur(indexJoueur: Int, colonne: Int, ligne: Int) {
+        val zone = zonesCartesJoueurs[indexJoueur]
+        zone.children.add(outilsCartes.getImageCarte(colonne, ligne))
+    }
+    fun joueurEliminé(indexJoueur: Int){
+        // On applique un style visuel "éliminé" (fond sombre/gris ou bordure rouge)
+        casesJoueurs[indexJoueur].style = "-fx-background-color: #2c1a1a; -fx-background-radius: 5;"
+    }
+    fun joueurStop(indexJoueur: Int){
+        // On applique un style visuel "éliminé" (fond sombre/gris ou bordure rouge)
+        casesJoueurs[indexJoueur].style = "-fx-background-color: #808080; -fx-background-radius: 5;"
+    }
+    fun fixeActionSurCaseJoueur(indexJoueur: Int, action: () -> Unit) {
+        casesJoueurs[indexJoueur].setOnMouseClicked {
+            action()
+        }
+    }
+    fun preparerNouvelleManche(numeroManche: Int) {
+        mettreAJourManche(numeroManche)
+
+        // 1. On efface la dernière carte piochée au centre
+        conteneurCarteTiree.children.clear()
+
+        // 2. On nettoie la zone de chaque joueur
+        for (i in casesJoueurs.indices) {
+            // On vide les cartes de la main
+            zonesCartesJoueurs[i].children.clear()
+
+            // On remet la couleur bleue d'origine (enlève l'effet "Brûlé")
+            casesJoueurs[i].style = "-fx-background-color: #4a548c; -fx-padding: 10; -fx-background-radius: 10;"
+        }
+    }
+
+
 }
