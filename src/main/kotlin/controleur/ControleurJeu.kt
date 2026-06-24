@@ -1,12 +1,17 @@
 package iut.info1.flip7.flip7.controleur
 
+import Flip7Main
+import controleur.ControleurFinDePartie
 import iut.info1.flip7.cartes.Carte
 import iut.info1.flip7.etats.EtatJoueur
 import iut.info1.flip7.etats.EtatPartie
 import iut.info1.flip7.flip7.vue.DeroulementPartieVue
 import iut.info1.flip7.flip7.modele.Flip7Manager
+import iut.info1.flip7.flip7.vue.InitialisationVue
+import javafx.application.Application
+import vue.FinPartieVue
 
-class ControleurJeu(private val vue: DeroulementPartieVue, private val modele: Flip7Manager) {
+class ControleurJeu(private val vue: DeroulementPartieVue, private val modele: Flip7Manager, private val application: Flip7Main) {
 
     private var carteSpecialeEnAttente: Carte? = null
     var manche : Int = 1
@@ -108,7 +113,9 @@ class ControleurJeu(private val vue: DeroulementPartieVue, private val modele: F
                 // Il faut le revérifier pour décider de la suite des événements :
                 if (partie.etatPartie == EtatPartie.PARTIE_TERMINEE) {
                     println("La limite de points a été franchie. Fin de la partie !")
-                    // TODO: Ordonner à la vue de basculer sur l'écran des résultats finaux
+                    val vueFinDePartie = FinPartieVue(partie)
+                    ControleurFinDePartie(vueFinDePartie, application)
+                    application.changerVue(vueFinDePartie)
                 } else {
                     println("Mise en place de la manche suivante...")
                     partie.nouvelleManche() // Permet de réinitialiser la pioche et les mains dans le modèle
@@ -119,6 +126,9 @@ class ControleurJeu(private val vue: DeroulementPartieVue, private val modele: F
             }
             EtatPartie.PARTIE_TERMINEE -> {
                 println("Un joueur a atteint les 200 points. Fin de la partie !")
+                val vueFinDePartie = FinPartieVue(partie)
+                ControleurFinDePartie(vueFinDePartie, application)
+                application.changerVue(vueFinDePartie)
                 // Ici, tu pourras plus tard afficher un écran de victoire
             }
             else -> {

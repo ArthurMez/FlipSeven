@@ -75,7 +75,7 @@ class ControleurInitialisation(
 
                 // 5. On affiche l'écran de jeu
                 val menuJeu = DeroulementPartieVue()
-                ControleurJeu(menuJeu, modeleFlip7)
+                ControleurJeu(menuJeu, modeleFlip7, application)
                 application.changerVue(menuJeu)
 
             } else {
