@@ -1,34 +1,34 @@
-import iut.info1.flip7.flip7.controleur.ControleurAjouterJoueur
-import iut.info1.flip7.flip7.controleur.ControleurSupprimerJoueur
-import iut.info1.flip7.flip7.modele.ModeleInitialisation
-import iut.info1.flip7.flip7.vue.InitialisationVue
 import iut.info1.flip7.flip7.vue.MenuPrincipalVue
 import javafx.application.Application
+import javafx.scene.Parent
 import javafx.scene.Scene
 import javafx.stage.Stage
+import iut.info1.flip7.flip7.controleur.ControleurMenu
 
 
 class Flip7Main: Application() {
 
+    private lateinit var scene: Scene
+
     override fun start(primaryStage: Stage) {
-        // sans effet pour l'instant :
-        //javafx.scene.text.Font.loadFont(javaClass.getResourceAsStream("/Polices/LeckerliOne-Regular.ttf"), 20.0)
-        //javafx.scene.text.Font.loadFont(javaClass.getResourceAsStream("/Polices/Inter-VariableFont_slnt,wght.ttf"), 20.0)
 
-        val modele = ModeleInitialisation()
-        val vue = InitialisationVue()
+        javafx.scene.text.Font.loadFont(javaClass.getResourceAsStream("/polices/LeckerliOne-Regular.ttf"), 20.0)
+        javafx.scene.text.Font.loadFont(javaClass.getResourceAsStream("/polices/Inter-VariableFont_slnt,wght.ttf"), 20.0)
 
-        val controleurAjouter = ControleurAjouterJoueur(modele, vue)
-        val controleurSupprimer = ControleurSupprimerJoueur(modele, vue)
+        primaryStage.title="Flip7"
+        val root = MenuPrincipalVue()
+        scene = Scene(root, 1280.0, 720.0)
 
-        vue.fixeControleurBoutonAjouter(controleurAjouter)
-        vue.fixeControleurBoutonSupprimer(controleurSupprimer)
+        
 
-        val scene = Scene(vue, 1280.0, 720.0)
-        primaryStage.title="Initialisation"
+        ControleurMenu(root, this)
         primaryStage.scene=scene
         primaryStage.show()
 
+    }
+
+    fun changerVue(nouvelleVue: Parent) {
+        scene.root = nouvelleVue
     }
 }
 

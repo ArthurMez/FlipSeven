@@ -1,7 +1,9 @@
 package iut.info1.flip7.flip7.controleur
 
+import Flip7Main
 import iut.info1.flip7.flip7.modele.ModeleInitialisation
 import iut.info1.flip7.flip7.vue.InitialisationVue
+import iut.info1.flip7.flip7.vue.MenuPrincipalVue
 import javafx.event.ActionEvent
 import javafx.event.EventHandler
 import javafx.scene.control.Button
@@ -28,6 +30,30 @@ class ControleurSupprimerJoueur(private val modele: ModeleInitialisation, privat
         if (index >= 0) {
             modele.retirerJoueur(index)
             vue.mettreAJourAffichageJoueur(index, null)
+        }
+    }
+}
+
+class ControleurInitialisation(
+    vue: InitialisationVue,
+    application: Flip7Main
+) {
+    init {
+
+        val modele = ModeleInitialisation()
+
+
+        val controleurAjouter = ControleurAjouterJoueur(modele, vue)
+        vue.fixeControleurBoutonAjouter(controleurAjouter)
+
+
+        val controleurSupprimer = ControleurSupprimerJoueur(modele, vue)
+        vue.fixeControleurBoutonSupprimer(controleurSupprimer)
+
+        vue.boutonRetour.setOnAction {
+            val menuVue = MenuPrincipalVue()
+            ControleurMenu(menuVue, application)
+            application.changerVue(menuVue)
         }
     }
 }
