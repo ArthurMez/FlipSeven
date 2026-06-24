@@ -1,10 +1,10 @@
 package iut.info1.flip7.flip7.vue
 
+import iut.info1.flip7.cartes.Carte
 import javafx.geometry.Insets
 import javafx.geometry.Pos
 import javafx.scene.control.Button
 import javafx.scene.control.Label
-import javafx.scene.image.ImageView
 import javafx.scene.layout.BorderPane
 import javafx.scene.layout.ColumnConstraints
 import javafx.scene.layout.GridPane
@@ -22,7 +22,7 @@ class DeroulementPartieVue : BorderPane() {
     val btnStop = Button("Stop")
     private val conteneurCarteTiree = HBox()//Reservation de l'emplacement pour la carte tiré
     // Labels qui seront mis à jour par le contrôleur
-    private val labelManche = Label("Manche : 1")
+    private var labelManche = Label("Manche : 1")
     private val labelScoreTotal = Label("Score total:")
     // Tu peux stocker les labels de score des joueurs dans une liste pour y accéder facilement par index
     private val labelsScoresJoueurs = mutableListOf<Label>()
@@ -74,7 +74,7 @@ class DeroulementPartieVue : BorderPane() {
         zoneScores.children.add(labelScoreTotal)
 
         for (i in 0 until 4) {
-            val nomJoueurLabel = Label("Joueur${i+1}")
+            val nomJoueurLabel = Label()
             val scoreLabel = Label("0")
             nomJoueurLabel.style = "-fx-text-fill: black;"
             scoreLabel.style = "-fx-text-fill: black;"
@@ -122,6 +122,8 @@ class DeroulementPartieVue : BorderPane() {
 
     // --- MÉTHODES DE MISE À JOUR POUR LE CONTRÔLEUR ---
 
+
+
     fun mettreAJourScore(indexJoueur: Int, nouveauScore: Int) {
         labelsScoresJoueurs[indexJoueur].text = nouveauScore.toString()
     }
@@ -133,11 +135,7 @@ class DeroulementPartieVue : BorderPane() {
         conteneurCarteTiree.children.clear() // On efface la carte du tour précédent
         conteneurCarteTiree.children.add(outilsCartes.getImageCarte(colonne, ligne))
     }
-    fun ajouterCarteAuJoueur(indexJoueur: Int, colonne: Int, ligne: Int) {
-        val zone = zonesCartesJoueurs[indexJoueur]
-        zone.children.add(outilsCartes.getImageCarte(colonne, ligne))
-    }
-    fun joueurEliminé(indexJoueur: Int){
+    fun joueurElimine(indexJoueur: Int){
         // On applique un style visuel "éliminé" (fond sombre/gris ou bordure rouge)
         casesJoueurs[indexJoueur].style = "-fx-background-color: #2c1a1a; -fx-background-radius: 5;"
     }
@@ -163,6 +161,15 @@ class DeroulementPartieVue : BorderPane() {
 
             // On remet la couleur bleue d'origine (enlève l'effet "Brûlé")
             casesJoueurs[i].style = "-fx-background-color: #4a548c; -fx-padding: 10; -fx-background-radius: 10;"
+        }
+    }
+    fun rafraichirMainJoueur(indexJoueur: Int, listeCartes: List<Carte>) {
+        val zone = zonesCartesJoueurs[indexJoueur]
+        zone.children.clear() // On vide tout
+
+        for (carte in listeCartes) {
+            val coordonnees = outilsCartes.obtenirCoordonneesCarte(carte)
+            zone.children.add(outilsCartes.getImageCarte(coordonnees.first, coordonnees.second))
         }
     }
 

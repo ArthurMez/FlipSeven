@@ -9,7 +9,7 @@ import iut.info1.flip7.flip7.modele.Flip7Manager
 class ControleurJeu(private val vue: DeroulementPartieVue, private val modele: Flip7Manager) {
 
     private var carteSpecialeEnAttente: Carte? = null
-
+    var manche : Int = 1
     init {
         vue.btnTirer.setOnAction {
             actionTirer()
@@ -23,6 +23,7 @@ class ControleurJeu(private val vue: DeroulementPartieVue, private val modele: F
                 selectionnerCible(i)
             }
         }
+
     }
 
     private fun actionTirer() {
@@ -32,9 +33,12 @@ class ControleurJeu(private val vue: DeroulementPartieVue, private val modele: F
         if (carteTiree != null && indexActuel != null) {
             val coordonnees = utilitaires.OutilsAffichageCartes().obtenirCoordonneesCarte(carteTiree)
             vue.afficherCarteTiree(coordonnees.first, coordonnees.second)
-            vue.ajouterCarteAuJoueur(indexActuel, coordonnees.first, coordonnees.second)
+            val mainDuJoueur = modele.partieEnCours?.main[indexActuel]
+            if (mainDuJoueur != null) {
+                vue.rafraichirMainJoueur(indexActuel, mainDuJoueur)
+            }
             if (modele.partieEnCours?.etatJoueur[indexActuel]== EtatJoueur.PERDU){
-                vue.joueurEliminé(indexActuel)
+                vue.joueurElimine(indexActuel)
             }
             if (modele.partieEnCours?.etatPartie == EtatPartie.ATTENTE_CIBLE_STOP || modele.partieEnCours?.etatPartie == EtatPartie.ATTENTE_CIBLE_3SUITE) {
 
@@ -46,26 +50,26 @@ class ControleurJeu(private val vue: DeroulementPartieVue, private val modele: F
         verifierEtatGlobal()
     }
     private fun selectionnerCible(indexCible: Int) {
+        val indexActuel = modele.partieEnCours?.joueurCourant
         val partie = modele.partieEnCours ?: return
         val carte = carteSpecialeEnAttente ?: return
         val etatActuel = partie.etatPartie
 
-        // On vérifie si le jeu attendait effectivement une cible
+
         if (etatActuel == EtatPartie.ATTENTE_CIBLE_STOP) {
-            // 1. On applique l'effet STOP sur la cible dans le modèle
             partie.joueurCourantCibleStop(carte,indexCible)
-
-            // 2. On met à jour visuellement la vue (par exemple griser la cible)
             vue.joueurStop(indexCible)
-
-
-
-        } else if (etatActuel == EtatPartie.ATTENTE_CIBLE_3SUITE) { // Adapte si le nom est ATTENTE_CIBLE_CIBLE3SUITE
-            // 1. On applique l'effet FLIP THREE sur la cible
+        } else if (etatActuel == EtatPartie.ATTENTE_CIBLE_3SUITE) {
+            // 1. Exécution de l'action dans le modèle
             partie.joueurCourantCible3aLaSuite(carte, indexCible)
 
-            // 2. On désactive le mode ciblage
-
+            // 2. Rafraîchissement des mains impactées
+            val mainJoueurCourant = partie.main[indexActuel] ?: emptyList()
+            if (indexActuel != null) {
+                    vue.rafraichirMainJoueur(indexActuel, mainJoueurCourant)
+                }
+            val mainCible = partie.main[indexCible] ?: emptyList()
+            vue.rafraichirMainJoueur(indexCible, mainCible)
         }
         verifierEtatGlobal()
     }
@@ -109,9 +113,8 @@ class ControleurJeu(private val vue: DeroulementPartieVue, private val modele: F
                     println("Mise en place de la manche suivante...")
                     partie.nouvelleManche() // Permet de réinitialiser la pioche et les mains dans le modèle
 
-                    // On nettoie la table de jeu visuellement
-                    // TODO: Créer une variable pour compter les manches si vous souhaitez l'afficher
-                    vue.preparerNouvelleManche(2)
+                    manche += 1
+                    vue.preparerNouvelleManche(manche)
                 }
             }
             EtatPartie.PARTIE_TERMINEE -> {
