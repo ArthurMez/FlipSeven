@@ -19,31 +19,19 @@ class MenuPrincipalVue : VBox() {
         this.padding = Insets(20.0)
         this.style = "-fx-background-color: #D0D0D0;"
 
-        // 1. Style du Titre avec 'Leckerli One'
-        titre.style = """
-            -fx-font-family: 'Leckerli One';
-            -fx-font-size: 55px; 
-            -fx-text-fill: black;
-        """.trimIndent()
+        titre.style = "-fx-font-family: 'Leckerli One'; -fx-font-size: 55px; -fx-text-fill: black;"
 
-        // 2. Style des boutons avec 'Inter'
-        val styleBouton = """
-            -fx-font-family: 'Inter';
-            -fx-font-size: 18px;
-            -fx-font-weight: bold;
-            -fx-background-color: #A3A2C4;
-            -fx-text-fill: black;
-            -fx-background-radius: 12px;
-            -fx-border-radius: 12px;
-            -fx-border-color: black;
-            -fx-border-width: 2px;
-        """.trimIndent()
+        boutonPartie.style = "-fx-font-family: 'Inter'; -fx-font-size: 18px; -fx-font-weight: bold; -fx-background-color: #A3A2C4; -fx-text-fill: black; -fx-background-radius: 12px; -fx-border-radius: 12px; -fx-border-color: black; -fx-border-width: 2px;"
+        boutonPartie.prefWidth = 250.0
+        boutonPartie.prefHeight = 50.0
 
-        listOf(boutonPartie, boutonRegles, boutonQuitter).forEach { bouton ->
-            bouton.style = styleBouton
-            bouton.prefWidth = 250.0
-            bouton.prefHeight = 50.0
-        }
+        boutonRegles.style = "-fx-font-family: 'Inter'; -fx-font-size: 18px; -fx-font-weight: bold; -fx-background-color: #A3A2C4; -fx-text-fill: black; -fx-background-radius: 12px; -fx-border-radius: 12px; -fx-border-color: black; -fx-border-width: 2px;"
+        boutonRegles.prefWidth = 250.0
+        boutonRegles.prefHeight = 50.0
+
+        boutonQuitter.style = "-fx-font-family: 'Inter'; -fx-font-size: 18px; -fx-font-weight: bold; -fx-background-color: #A3A2C4; -fx-text-fill: black; -fx-background-radius: 12px; -fx-border-radius: 12px; -fx-border-color: black; -fx-border-width: 2px;"
+        boutonQuitter.prefWidth = 250.0
+        boutonQuitter.prefHeight = 50.0
 
         this.children.addAll(titre, boutonPartie, boutonRegles, boutonQuitter)
     }
