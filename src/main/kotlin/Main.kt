@@ -1,6 +1,3 @@
-import iut.info1.flip7.flip7.controleur.ControleurJeu
-import iut.info1.flip7.flip7.modele.Flip7Manager
-import iut.info1.flip7.flip7.vue.DeroulementPartieVue
 import iut.info1.flip7.flip7.vue.MenuPrincipalVue
 import javafx.application.Application
 import javafx.scene.Parent

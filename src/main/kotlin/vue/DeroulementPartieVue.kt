@@ -28,6 +28,8 @@ class DeroulementPartieVue : BorderPane() {
     private val labelsScoresJoueurs = mutableListOf<Label>()
     private val zonesCartesJoueurs = mutableListOf<HBox>()
     private val casesJoueurs = mutableListOf<VBox>()
+    private val NomsGrille = mutableListOf<Label>()
+    private val NomsScores = mutableListOf<Label>()
 
     init {
         // Grille des joueurs
@@ -74,11 +76,11 @@ class DeroulementPartieVue : BorderPane() {
         zoneScores.children.add(labelScoreTotal)
 
         for (i in 0 until 4) {
-            val nomJoueurLabel = Label()
+            val nomJoueurLabel = Label("Absent")
             val scoreLabel = Label("0")
             nomJoueurLabel.style = "-fx-text-fill: black;"
             scoreLabel.style = "-fx-text-fill: black;"
-
+            NomsScores.add(nomJoueurLabel)
             val scoreBox = VBox(nomJoueurLabel, scoreLabel)
             scoreBox.alignment = Pos.CENTER
             labelsScoresJoueurs.add(scoreLabel)
@@ -107,7 +109,8 @@ class DeroulementPartieVue : BorderPane() {
 
         // Nom du joueur et symboles bonus
         val infoJoueur = HBox(10.0)
-        val nomJoueur = Label("Joueur ${index + 1}")
+        val nomJoueur = Label("Absent")
+        NomsGrille.add(nomJoueur)
         val zoneBonus = HBox(5.0) // Contiendrait les cœurs, x2, etc.
         infoJoueur.children.addAll(nomJoueur, zoneBonus)
 
@@ -122,7 +125,14 @@ class DeroulementPartieVue : BorderPane() {
 
     // --- MÉTHODES DE MISE À JOUR POUR LE CONTRÔLEUR ---
 
-
+    fun initialisationNomJoueur(index: Int, nom: String) {
+        if (index < NomsGrille.size) {
+            NomsGrille[index].text = nom
+        }
+        if (index < NomsScores.size) {
+            NomsScores[index].text = nom
+        }
+    }
 
     fun mettreAJourScore(indexJoueur: Int, nouveauScore: Int) {
         labelsScoresJoueurs[indexJoueur].text = nouveauScore.toString()
@@ -136,11 +146,9 @@ class DeroulementPartieVue : BorderPane() {
         conteneurCarteTiree.children.add(outilsCartes.getImageCarte(colonne, ligne))
     }
     fun joueurElimine(indexJoueur: Int){
-        // On applique un style visuel "éliminé" (fond sombre/gris ou bordure rouge)
         casesJoueurs[indexJoueur].style = "-fx-background-color: #2c1a1a; -fx-background-radius: 5;"
     }
     fun joueurStop(indexJoueur: Int){
-        // On applique un style visuel "éliminé" (fond sombre/gris ou bordure rouge)
         casesJoueurs[indexJoueur].style = "-fx-background-color: #808080; -fx-background-radius: 5;"
     }
     fun fixeActionSurCaseJoueur(indexJoueur: Int, action: () -> Unit) {
@@ -154,12 +162,8 @@ class DeroulementPartieVue : BorderPane() {
         // 1. On efface la dernière carte piochée au centre
         conteneurCarteTiree.children.clear()
 
-        // 2. On nettoie la zone de chaque joueur
         for (i in casesJoueurs.indices) {
-            // On vide les cartes de la main
             zonesCartesJoueurs[i].children.clear()
-
-            // On remet la couleur bleue d'origine (enlève l'effet "Brûlé")
             casesJoueurs[i].style = "-fx-background-color: #4a548c; -fx-padding: 10; -fx-background-radius: 10;"
         }
     }

@@ -28,6 +28,12 @@ class ControleurJeu(private val vue: DeroulementPartieVue, private val modele: F
                 selectionnerCible(i)
             }
         }
+        val joueurs = modele.partieEnCours?.joueurs
+        if (joueurs != null) {
+            for(i in 0 until joueurs.size) {
+                vue.initialisationNomJoueur(i, joueurs[i].donneNom())
+            }
+        }
 
     }
 

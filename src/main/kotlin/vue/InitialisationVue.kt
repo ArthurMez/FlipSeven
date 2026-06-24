@@ -110,7 +110,7 @@ class InitialisationVue : BorderPane() {
 
         bas.alignment = Pos.CENTER
         bas.spacing = 100.0
-        bas.children.addAll(basAjouter, boutonDemarrer)
+        bas.children.addAll(basAjouter,labelErreur, boutonDemarrer,)
         this.bottom = bas
     }
 
