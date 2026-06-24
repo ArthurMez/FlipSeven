@@ -14,13 +14,15 @@ import javafx.scene.layout.VBox
 
 class InitialisationVue : BorderPane() {
 
-    val boutonRetour = Button("<--")
+    val boutonRetour = Button("←")
     private val labelTitre = Label("Flip 7")
+
 
     private val bas = HBox()
     private val basAjouter = VBox()
     private val boutonAjouter = Button("Ajouter joueur")
-    private val inputNom = TextField("Pseudo joueur:")
+    private val inputNom = TextField()
+
 
     val boutonDemarrer = Button("Démarrer partie")
 
@@ -34,6 +36,8 @@ class InitialisationVue : BorderPane() {
 
 
     init {
+        inputNom.promptText = "Pseudo joueur"
+        labelTitre.style = "-fx-font-family: 'Leckerli One'; -fx-font-size: 55px; -fx-text-fill: black;"
         for (i in 0 until 4) {
             val joueur = VBox()
             joueur.alignment = Pos.CENTER
@@ -52,6 +56,9 @@ class InitialisationVue : BorderPane() {
             val boutonSuppr = Button("X")
             boutonSuppr.isVisible = false
             boutonSuppr.userData = i
+            boutonSuppr.style = "-fx-font-family: 'Inter'; -fx-font-size: 14px; -fx-font-weight: bold; -fx-background-color: #E57373; -fx-text-fill: white; -fx-background-radius: 50; -fx-border-radius: 50; -fx-border-color: black; -fx-border-width: 2px; -fx-cursor: hand;"
+            boutonSuppr.prefWidth = 36.0
+            boutonSuppr.prefHeight = 36.0
 
             joueur.children.addAll(imageView, labelNom, boutonSuppr)
 
@@ -67,6 +74,10 @@ class InitialisationVue : BorderPane() {
         topContainer.alignment = Pos.CENTER
         BorderPane.setAlignment(topContainer, Pos.CENTER)
         this.top = topContainer
+
+        boutonRetour.style = "-fx-font-family: 'Inter'; -fx-font-size: 18px; -fx-font-weight: bold; -fx-background-color: #A3A2C4; -fx-text-fill: black; -fx-background-radius: 12px; -fx-border-radius: 12px; -fx-border-color: black; -fx-border-width: 2px; -fx-cursor: hand;"
+        boutonRetour.prefWidth = 50.0
+        boutonRetour.prefHeight = 50.0
         this.left = boutonRetour
 
         centre.alignment = Pos.CENTER
@@ -78,7 +89,19 @@ class InitialisationVue : BorderPane() {
 
         this.center = centre
 
-        basAjouter.spacing = 5.0
+        boutonAjouter.style = "-fx-font-family: 'Inter'; -fx-font-size: 16px; -fx-font-weight: bold; -fx-background-color: #A3A2C4; -fx-text-fill: black; -fx-background-radius: 12px; -fx-border-radius: 12px; -fx-border-color: black; -fx-border-width: 2px; -fx-cursor: hand;"
+        boutonAjouter.prefWidth = 200.0
+        boutonAjouter.prefHeight = 45.0
+
+        boutonDemarrer.style = "-fx-font-family: 'Inter'; -fx-font-size: 18px; -fx-font-weight: bold; -fx-background-color: #A3A2C4; -fx-text-fill: black; -fx-background-radius: 12px; -fx-border-radius: 12px; -fx-border-color: black; -fx-border-width: 2px; -fx-cursor: hand;"
+        boutonDemarrer.prefWidth = 250.0
+        boutonDemarrer.prefHeight = 50.0
+
+        inputNom.prefWidth = 200.0
+        inputNom.style = "-fx-font-family: 'Inter'; -fx-font-size: 14px;"
+
+        basAjouter.spacing = 8.0
+        basAjouter.alignment = Pos.CENTER
         basAjouter.children.addAll(inputNom, boutonAjouter)
 
         bas.alignment = Pos.CENTER
