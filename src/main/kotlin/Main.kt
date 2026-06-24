@@ -1,45 +1,27 @@
-package flip7
-
+import iut.info1.flip7.flip7.vue.MenuPrincipalVue
 import javafx.application.Application
 import javafx.scene.Scene
-import javafx.scene.layout.BorderPane
 import javafx.stage.Stage
 
 
-class TD1_1
-    : Application() {
+class Flip7Main: Application() {
 
-    init{
-        print("je suis dans le constructeur")
+    override fun start(primaryStage: Stage) {
+        // sans effet pour l'instant :
+        //javafx.scene.text.Font.loadFont(javaClass.getResourceAsStream("/Polices/LeckerliOne-Regular.ttf"), 20.0)
+        //javafx.scene.text.Font.loadFont(javaClass.getResourceAsStream("/Polices/Inter-VariableFont_slnt,wght.ttf"), 20.0)
+
+        primaryStage.title="Flip7"
+        val root = MenuPrincipalVue()
+
+        val scene = Scene(root, 700.0, 500.0)
+        primaryStage.scene=scene
+        primaryStage.show()
+
     }
-    override fun init(){
-        print("je suis dans la méthode init")
-    }
-
-    override fun stop() {
-        print("je suis dans la méthode stop")
-    }
-
-    override fun start(s: Stage) {
-        s.title = ("titre")
-        s.isResizable = false
-        s.toFront()
-
-
-        val root = BorderPane()
-        val sc = Scene(root, 1000.0, 800.0)
-        s.scene = sc
-        s.show()
-    }
-
 }
+
 
 fun main() {
-
-    println("main avant launch")
-    Application.launch(TD1_1::class.java)
-    println("main après launch")
+    Application.launch(Flip7Main::class.java)
 }
-
-
-
