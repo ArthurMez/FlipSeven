@@ -8,5 +8,6 @@ La plupart des styles (ex: boutonSuppr.style = "-fx-font-family: 'Inter'; -fx-fo
 Le fichier OutilsAffichageCartes.kt à été généré avec l'aide de l'IA, il permet de découper une image qui contient toutes les cartes en cartes individuelles.
 
 Pour la vue des règles, l'IA (Claude) à été utilisé pour copier les règles du jeu et résoudre quelques petits problèmes d'affichage.
+Pour des tests unitaires des classes ModeleInitialisation, Flip7Manager l'IA (Claude) à été utilisé pour aider à proposer une première série de cas de test couvrant les comportements attendus
 
 L'IA (Claude) a été utilisé pour le modèle ainsi que le controlleur du menu d'initialisation de la partie, notamment pour le système d'index utilisant userData dans la vue, et ajouterJoueur qui renvoie l'index ou le joueur à été ajouté
