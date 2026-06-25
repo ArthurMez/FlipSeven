@@ -90,6 +90,9 @@ class ControleurJeu(private val vue: DeroulementPartieVue, private val modele: F
                 }
             val mainCible = partie.main[indexCible] ?: emptyList()
             vue.rafraichirMainJoueur(indexCible, mainCible)
+            if (modele.partieEnCours?.etatJoueur[indexActuel]== EtatJoueur.PERDU){
+                vue.joueurElimine(indexCible)
+            }
             carteSpecialeEnAttente = null
             vue.changerModeCiblage(false)
         }

@@ -5,12 +5,14 @@ import javafx.geometry.Insets
 import javafx.geometry.Pos
 import javafx.scene.control.Button
 import javafx.scene.control.Label
+import javafx.scene.effect.DropShadow
 import javafx.scene.layout.BorderPane
 import javafx.scene.layout.ColumnConstraints
 import javafx.scene.layout.GridPane
 import javafx.scene.layout.HBox
 import javafx.scene.layout.RowConstraints
 import javafx.scene.layout.VBox
+import javafx.scene.paint.Color
 import utilitaires.OutilsAffichageCartes
 
 class DeroulementPartieVue : BorderPane() {
@@ -199,12 +201,19 @@ class DeroulementPartieVue : BorderPane() {
 
     }
     fun mettreEnEvidenceJoueurCourant(indexJoueurCourant: Int) {
+        val lueurDoree = DropShadow()
+        lueurDoree.color = Color.BLACK
+        lueurDoree.radius = 25.0
+        lueurDoree.spread = 0.6 // Règle l'intensité de la lueur
+
+
         for (i in casesJoueurs.indices) {
             if (i == indexJoueurCourant) {
-                casesJoueurs[i].style = "-fx-background-color: #4a548c; -fx-padding: 10; -fx-background-radius: 10; -fx-border-color: black"
+                // On applique la lueur uniquement au joueur qui doit jouer
+                casesJoueurs[i].effect = lueurDoree
             } else {
                 // On retire l'effet pour tous les autres joueurs
-                casesJoueurs[i].style = "-fx-background-color: #4a548c; -fx-padding: 10; -fx-background-radius: 10;"
+                casesJoueurs[i].effect = null
             }
         }
     }
