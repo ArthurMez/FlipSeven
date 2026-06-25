@@ -20,7 +20,7 @@ import javafx.scene.layout.VBox
 class FinPartieVue(partie : Flip7) : VBox(40.0) { // Ajout d'un espacement vertical global de 40.0
     val titre = Label("Fin de partie").apply {
         style = """
-                -fx-font-family: 'Comic Sans MS', 'Caveat', cursive;
+                -fx-font-family: 'Leckerli One';
                 -fx-font-size: 50px;
                 -fx-font-weight: bold;
                 -fx-text-fill: #000000;

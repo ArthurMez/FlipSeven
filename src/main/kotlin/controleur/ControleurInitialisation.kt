@@ -68,18 +68,14 @@ class ControleurInitialisation(
         vue.boutonDemarrer.setOnAction {
             val pseudos = modeleInitialisation.getJoueursValides()
 
-            // 2. On vérifie qu'il y a au moins 2 joueurs
             if (pseudos.size >= 2) {
 
-                // 3. On transfère chaque pseudo dans le vrai jeu
                 for (nom in pseudos) {
                     modeleFlip7.ajouterJoueur(nom)
                 }
 
-                // 4. On démarre la logique du jeu
                 modeleFlip7.demarrerPartie()
 
-                // 5. On affiche l'écran de jeu
                 val menuJeu = DeroulementPartieVue()
                 ControleurJeu(menuJeu, modeleFlip7, application)
                 application.changerVue(menuJeu)

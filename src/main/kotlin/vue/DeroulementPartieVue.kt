@@ -26,7 +26,6 @@ class DeroulementPartieVue : BorderPane() {
     // Labels qui seront mis à jour par le contrôleur
     private var labelManche = Label("Manche : 1")
     private val labelScoreTotal = Label("Score total:")
-    // Tu peux stocker les labels de score des joueurs dans une liste pour y accéder facilement par index
     private val labelsScoresJoueurs = mutableListOf<Label>()
     private val zonesCartesJoueurs = mutableListOf<HBox>()
     private val casesJoueurs = mutableListOf<VBox>()
@@ -74,14 +73,14 @@ class DeroulementPartieVue : BorderPane() {
         val zoneScores = HBox(15.0)
         zoneScores.alignment = Pos.CENTER
         zoneScores.style = "-fx-background-color: #f0f0f0; -fx-background-radius: 10; -fx-padding: 10 20 10 20;"
-        labelScoreTotal.style = "-fx-text-fill: black; -fx-font-weight: bold;"
+        labelScoreTotal.style = "-fx-text-fill: black; -fx-font-weight: bold;-fx-font-family: 'Leckerli One';"
         zoneScores.children.add(labelScoreTotal)
 
         for (i in 0 until 4) {
             val nomJoueurLabel = Label("Absent")
             val scoreLabel = Label("0")
-            nomJoueurLabel.style = "-fx-text-fill: black;"
-            scoreLabel.style = "-fx-text-fill: black;"
+            nomJoueurLabel.style = "-fx-text-fill: black;-fx-font-family: 'Leckerli One';"
+            scoreLabel.style = "-fx-text-fill: black;-fx-font-family: 'Leckerli One';"
             NomsScores.add(nomJoueurLabel)
             val scoreBox = VBox(nomJoueurLabel, scoreLabel)
             scoreBox.alignment = Pos.CENTER
@@ -90,9 +89,17 @@ class DeroulementPartieVue : BorderPane() {
         }
 
         // Section Boutons
+        btnTirer.style = "-fx-font-family: 'Leckerli One'; -fx-font-size: 15px; -fx-font-weight: bold; -fx-background-color: #20AD00; -fx-text-fill: white; -fx-background-radius: 12px; -fx-border-radius: 12px"
+        btnTirer.prefWidth = 80.0
+        btnTirer.prefHeight = 40.0
+
+        btnStop.style = "-fx-font-family: 'Leckerli One'; -fx-font-size: 15px; -fx-font-weight: bold; -fx-background-color: #FF0000; -fx-text-fill: white; -fx-background-radius: 12px; -fx-border-radius: 12px"
+        btnStop.prefWidth = 80.0
+        btnStop.prefHeight = 40.0
+
         val zoneBoutons = VBox(10.0, btnTirer, btnStop)
         zoneBoutons.alignment = Pos.CENTER_RIGHT
-        labelManche.style ="-fx-text-fill: white;"
+        labelManche.style ="-fx-text-fill: white;-fx-font-family: 'Leckerli One';"
         menuBas.children.addAll(zonePioche, labelManche, zoneScores, zoneBoutons)
 
         this.bottom = menuBas
@@ -112,6 +119,7 @@ class DeroulementPartieVue : BorderPane() {
         // Nom du joueur et symboles bonus
         val infoJoueur = HBox(10.0)
         val nomJoueur = Label("Absent")
+        nomJoueur.style = "-fx-font-family: 'Leckerli One'"
         NomsGrille.add(nomJoueur)
         val zoneBonus = HBox(5.0) // Contiendrait les cœurs, x2, etc.
         infoJoueur.children.addAll(nomJoueur, zoneBonus)
