@@ -7,8 +7,6 @@ import iut.info1.flip7.etats.EtatJoueur
 import iut.info1.flip7.etats.EtatPartie
 import iut.info1.flip7.flip7.vue.DeroulementPartieVue
 import iut.info1.flip7.flip7.modele.Flip7Manager
-import iut.info1.flip7.flip7.vue.InitialisationVue
-import javafx.application.Application
 import vue.FinPartieVue
 
 class ControleurJeu(private val vue: DeroulementPartieVue, private val modele: Flip7Manager, private val application: Flip7Main) {
@@ -34,6 +32,10 @@ class ControleurJeu(private val vue: DeroulementPartieVue, private val modele: F
                 vue.initialisationNomJoueur(i, joueurs[i].donneNom())
             }
         }
+        val indexDepart = modele.partieEnCours?.joueurCourant
+        if (indexDepart != null) {
+            vue.mettreEnEvidenceJoueurCourant(indexDepart)
+        }
 
     }
 
@@ -52,35 +54,47 @@ class ControleurJeu(private val vue: DeroulementPartieVue, private val modele: F
                 vue.joueurElimine(indexActuel)
             }
             if (modele.partieEnCours?.etatPartie == EtatPartie.ATTENTE_CIBLE_STOP || modele.partieEnCours?.etatPartie == EtatPartie.ATTENTE_CIBLE_3SUITE) {
-
                 carteSpecialeEnAttente = carteTiree
-
+                //survole des joueurs actifs pour le ciblage
+                val indicesActifs = mutableListOf<Int>()
+                val etatsJoueurs = modele.partieEnCours?.etatJoueur
+                val nombreDeJoueurs = modele.partieEnCours?.nbJoueurs ?: 0
+                if (etatsJoueurs != null) {
+                    for (i in 0 until nombreDeJoueurs) {
+                        if (etatsJoueurs[i] == EtatJoueur.JOUE_ENCORE) {
+                            indicesActifs.add(i)
+                        }
+                    }
+                }
+                vue.changerModeCiblage(true, indicesActifs)
             }
-
         }
         verifierEtatGlobal()
     }
+
     private fun selectionnerCible(indexCible: Int) {
         val indexActuel = modele.partieEnCours?.joueurCourant
         val partie = modele.partieEnCours ?: return
         val carte = carteSpecialeEnAttente ?: return
         val etatActuel = partie.etatPartie
-
-
         if (etatActuel == EtatPartie.ATTENTE_CIBLE_STOP) {
             partie.joueurCourantCibleStop(carte,indexCible)
             vue.joueurStop(indexCible)
+            carteSpecialeEnAttente = null
+            vue.changerModeCiblage(false)
         } else if (etatActuel == EtatPartie.ATTENTE_CIBLE_3SUITE) {
-            // 1. Exécution de l'action dans le modèle
             partie.joueurCourantCible3aLaSuite(carte, indexCible)
-
-            // 2. Rafraîchissement des mains impactées
             val mainJoueurCourant = partie.main[indexActuel] ?: emptyList()
             if (indexActuel != null) {
                     vue.rafraichirMainJoueur(indexActuel, mainJoueurCourant)
                 }
             val mainCible = partie.main[indexCible] ?: emptyList()
             vue.rafraichirMainJoueur(indexCible, mainCible)
+            if (modele.partieEnCours?.etatJoueur[indexActuel]== EtatJoueur.PERDU){
+                vue.joueurElimine(indexCible)
+            }
+            carteSpecialeEnAttente = null
+            vue.changerModeCiblage(false)
         }
         verifierEtatGlobal()
     }
@@ -89,34 +103,23 @@ class ControleurJeu(private val vue: DeroulementPartieVue, private val modele: F
         modele.partieEnCours?.joueurCourantDitStop()
         if (indexActuel != null){
             vue.joueurStop(indexActuel)
+
         }
         verifierEtatGlobal()
     }
     private fun verifierEtatGlobal() {
         val partie = modele.partieEnCours ?: return
-        // 2. Vérification de la fin de manche ou de partie
-        when (partie.etatPartie) {
 
+        when (partie.etatPartie) {
             EtatPartie.MANCHE_TERMINEE -> {
                 println("Manche terminée ! Lancement du calcul des scores...")
-
-                // 1. On donne l'ordre au modèle de calculer les points de la manche.
-                // Cette méthode ne doit être appelée QUE lorsque l'état est MANCHE_TERMINEE.
                 val scoresDeLaManche = partie.scoreManche()
-
-                // 2. On récupère les scores globaux (qui viennent d'être additionnés en interne par la librairie)
                 val scoresTotaux = partie.score
-
-                // 3. On transmet ces scores globaux à la Vue pour actualiser l'interface
-                // (Remplace partie.nbJoueurs par la propriété exacte qui donne la taille de la liste si besoin)
                 for (i in 0 until partie.nbJoueurs) {
                     val scoreTotal = scoresTotaux[i] ?: 0
                     vue.mettreAJourScore(i, scoreTotal)
                     println("Le joueur $i a remporté ${scoresDeLaManche[i]} points à cette manche. Score global : $scoreTotal")
                 }
-
-                // 4. L'appel à scoreManche() a automatiquement basculé l'état du jeu.
-                // Il faut le revérifier pour décider de la suite des événements :
                 if (partie.etatPartie == EtatPartie.PARTIE_TERMINEE) {
                     println("La limite de points a été franchie. Fin de la partie !")
                     val vueFinDePartie = FinPartieVue(partie)
@@ -135,11 +138,14 @@ class ControleurJeu(private val vue: DeroulementPartieVue, private val modele: F
                 val vueFinDePartie = FinPartieVue(partie)
                 ControleurFinDePartie(vueFinDePartie, application)
                 application.changerVue(vueFinDePartie)
-                // Ici, tu pourras plus tard afficher un écran de victoire
             }
             else -> {
                 // L'état est normal (NOUVELLE_MANCHE ou en cours), on ne fait rien de spécial
             }
+        }
+        if (partie.etatPartie != EtatPartie.PARTIE_TERMINEE) {
+            val indexActuel = partie.joueurCourant
+            vue.mettreEnEvidenceJoueurCourant(indexActuel)
         }
     }
 }

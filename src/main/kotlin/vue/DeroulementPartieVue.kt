@@ -5,12 +5,14 @@ import javafx.geometry.Insets
 import javafx.geometry.Pos
 import javafx.scene.control.Button
 import javafx.scene.control.Label
+import javafx.scene.effect.DropShadow
 import javafx.scene.layout.BorderPane
 import javafx.scene.layout.ColumnConstraints
 import javafx.scene.layout.GridPane
 import javafx.scene.layout.HBox
 import javafx.scene.layout.RowConstraints
 import javafx.scene.layout.VBox
+import javafx.scene.paint.Color
 import utilitaires.OutilsAffichageCartes
 
 class DeroulementPartieVue : BorderPane() {
@@ -65,7 +67,7 @@ class DeroulementPartieVue : BorderPane() {
 
         // Section Pioche / Carte tirée
         val zonePioche = HBox(10.0)
-        val imagePioche = outilsCartes.getImageCarte(5, 2)
+        val imagePioche = outilsCartes.getImageCarte(6, 2)
         zonePioche.children.addAll(imagePioche, conteneurCarteTiree)
 
         // Section Scores
@@ -176,6 +178,43 @@ class DeroulementPartieVue : BorderPane() {
             zone.children.add(outilsCartes.getImageCarte(coordonnees.first, coordonnees.second))
         }
     }
+    fun changerModeCiblage(actif: Boolean, indicesValides: List<Int> = emptyList()) {
+        for (i in casesJoueurs.indices) {
+            val case = casesJoueurs[i]
+            if (actif) {
+                if (indicesValides.contains(i)) {
+                    case.userData = case.style
+                    case.setOnMouseEntered {
+                        case.style = "-fx-background-color: #7986cb; -fx-padding: 10; -fx-background-radius: 10; -fx-border-color: black; -fx-border-width: 2; -fx-border-radius: 10;"
+                    }
+                    case.setOnMouseExited {
+                        case.style = "-fx-background-color: #4a548c; -fx-padding: 10; -fx-background-radius: 10;"
+                    }
+                }
+            } else {
+                // --- ON DÉSACTIVE POUR TOUT LE MONDE ---
+                case.cursor = javafx.scene.Cursor.DEFAULT
+                case.onMouseEntered = null
+                case.onMouseExited = null
+            }
+        }
+
+    }
+    fun mettreEnEvidenceJoueurCourant(indexJoueurCourant: Int) {
+        val lueurDoree = DropShadow()
+        lueurDoree.color = Color.BLACK
+        lueurDoree.radius = 25.0
+        lueurDoree.spread = 0.6 // Règle l'intensité de la lueur
 
 
+        for (i in casesJoueurs.indices) {
+            if (i == indexJoueurCourant) {
+                // On applique la lueur uniquement au joueur qui doit jouer
+                casesJoueurs[i].effect = lueurDoree
+            } else {
+                // On retire l'effet pour tous les autres joueurs
+                casesJoueurs[i].effect = null
+            }
+        }
+    }
 }
