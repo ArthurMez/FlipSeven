@@ -1,20 +1,12 @@
 package vue
-import iut.info1.flip7.Joueur
+
 import iut.info1.flip7.Flip7
-import iut.info1.flip7.cartes.Carte
-import iut.info1.flip7.cartes.Carte2ndeChance
-import iut.info1.flip7.cartes.Carte3aLaSuite
-import iut.info1.flip7.cartes.CarteBonusMultiplie
-import iut.info1.flip7.cartes.CarteBonusPlus
-import iut.info1.flip7.cartes.CarteNum
-import iut.info1.flip7.cartes.CarteStop
 import javafx.geometry.Insets
 
 import javafx.geometry.Pos
 import javafx.scene.control.Button
 import javafx.scene.control.Label
 import javafx.scene.layout.HBox
-import javafx.scene.layout.Priority
 import javafx.scene.layout.VBox
 
 class FinPartieVue(partie : Flip7) : VBox(40.0) { // Ajout d'un espacement vertical global de 40.0
